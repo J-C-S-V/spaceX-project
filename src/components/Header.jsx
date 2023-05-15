@@ -13,7 +13,14 @@ function Header() {
         </Nav.Link>
         <Navbar.Brand className="justify-self-start" href="#home">Space Traveler&apos;s Hub</Navbar.Brand>
         <Nav className="justify-content-end flex-grow-1">
-          <Nav.Link href="#home">Rockets</Nav.Link>
+          <NavLink
+            to="/Rockets"
+            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            className="nav-link"
+          >
+            Rockets
+          </NavLink>
+
           <NavLink
             to="/Missions"
             activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
