@@ -5,32 +5,33 @@ import Navbar from 'react-bootstrap/Navbar';
 import log from '../assets/logo.png';
 
 function Header() {
+  const activeStyle = {
+    textDecoration: 'underline',
+  };
+
   return (
     <Navbar bg="light" expand="lg">
       <Container className="d-flex">
         <Nav.Link className="pr-2">
           <img src={log} width="100px" alt="logo" />
         </Nav.Link>
-        <Navbar.Brand className="justify-self-start" href="#home">Space Traveler&apos;s Hub</Navbar.Brand>
+        <Navbar.Brand className="justify-self-start" href="#home">
+          Space Traveler&apos;s Hub
+        </Navbar.Brand>
         <Nav className="justify-content-end flex-grow-1">
-          <NavLink
-            to="/Rockets"
-            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
-            className="nav-link"
-          >
-            Rockets
-          </NavLink>
-
+          <Nav.Link href="#home">Rockets</Nav.Link>
           <NavLink
             to="/Missions"
-            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            activeClassName="active"
+            style={activeStyle}
             className="nav-link"
           >
             Missions
           </NavLink>
           <NavLink
             to="/Profile"
-            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            activeClassName="active"
+            style={activeStyle}
             className="nav-link"
           >
             My Profile
