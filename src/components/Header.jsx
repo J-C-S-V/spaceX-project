@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
@@ -13,8 +14,20 @@ function Header() {
         <Navbar.Brand className="justify-self-start" href="#home">Space Traveler&apos;s Hub</Navbar.Brand>
         <Nav className="justify-content-end flex-grow-1">
           <Nav.Link href="#home">Rockets</Nav.Link>
-          <Nav.Link href="#link">Missions</Nav.Link>
-          <Nav.Link href="#link">My profile</Nav.Link>
+          <NavLink
+            to="/Missions"
+            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            className="nav-link"
+          >
+            Missions
+          </NavLink>
+          <NavLink
+            to="/Profile"
+            activeClassName={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+            className="nav-link"
+          >
+            My Profile
+          </NavLink>
         </Nav>
       </Container>
     </Navbar>
