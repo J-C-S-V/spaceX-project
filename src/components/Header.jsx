@@ -16,19 +16,13 @@ function Header() {
           Space Traveler&apos;s Hub
         </Navbar.Brand>
         <Nav className="justify-content-end flex-grow-1  mt-4 mr-4 p-3">
-          <Nav.Link href="#home">Rockets</Nav.Link>
-          <NavLink
-            to="/Missions"
-            // className="nav-link"
-          >
+          <NavLink to="/rockets" className="pe-3">
+            Rockets
+          </NavLink>
+          <NavLink to="/Missions" className="pe-3">
             Missions
           </NavLink>
-          <NavLink
-            to="/Profile"
-            // className="nav-link"
-          >
-            My Profile
-          </NavLink>
+          <NavLink to="/Profile">My Profile</NavLink>
         </Nav>
       </Container>
     </Navbar>
