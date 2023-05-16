@@ -15,17 +15,17 @@ function Header() {
         <Navbar.Brand className="justify-self-start" href="#home">
           Space Traveler&apos;s Hub
         </Navbar.Brand>
-        <Nav className="justify-content-end flex-grow-1">
+        <Nav className="justify-content-end flex-grow-1  mt-4 mr-4 p-3">
           <Nav.Link href="#home">Rockets</Nav.Link>
           <NavLink
             to="/Missions"
-            className="nav-link"
+            // className="nav-link"
           >
             Missions
           </NavLink>
           <NavLink
             to="/Profile"
-            className="nav-link"
+            // className="nav-link"
           >
             My Profile
           </NavLink>
