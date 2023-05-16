@@ -6,15 +6,16 @@ const endPoint = 'rockets';
 export const getRockets = createAsyncThunk('rockets/getRockets', async () => {
   const response = await fetch(`${url}${endPoint}`);
   const rockets = await response.json();
-  console.log(rockets);
+  // console.log('data', rockets[0]);
   return rockets;
 });
 
 const initialState = {
-  id: '',
-  name: '',
-  type: '',
-  flickrImages: [],
+  // id: '',
+  // name: '',
+  // type: '',
+  // flickrImages: [],
+  rocketList: [],
 };
 
 const rocketSlice = createSlice({
@@ -23,10 +24,15 @@ const rocketSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getRockets.fulfilled, (state, action) => {
-      state.id = action.payload[0].id;
-      state.name = action.payload[0].rocket_name;
-      state.type = action.payload[0].rocket_type;
-      state.flickrImages = action.payload[0].flickr_images;
+      // state.id = action.payload[0].id;
+      // state.name = action.payload[0].rocket_name;
+      // state.type = action.payload[0].description;
+      // state.flickrImages = action.payload[0].flickr_images;
+      // state.id = action.payload.id;
+      // state.name = action.payload.rocket_name;
+      // state.type = action.payload.description;
+      // state.flickrImages = action.payload.flickr_images;
+      state.rocketList = action.payload;
     });
   },
 });
