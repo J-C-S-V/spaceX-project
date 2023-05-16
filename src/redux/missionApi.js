@@ -1,4 +1,5 @@
-import axios from "axios";
+/* eslint-disable import/no-extraneous-dependencies */
+import axios from 'axios';
 
 const MissionsApi = axios.create({
   baseUrl:
@@ -12,9 +13,8 @@ export const getMissionsApi = async () => {
     );
     return response.data;
   } catch (error) {
-    console.error('Error fetching books:', error);
+    return error;
   }
-  return null
 };
 
 export default MissionsApi;
