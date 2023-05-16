@@ -50,7 +50,7 @@ const Missions = () => {
 
               <Col className=" d-flex align-items-center ">
                 <Button
-                  variant="outline-primary"
+                  variant={mission.joinedMission ? 'warning' : 'outline-primary'}
                   size="sm"
                   onClick={() => handleReservation(mission.mission_id)}
                 >
