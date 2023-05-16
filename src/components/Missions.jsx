@@ -29,6 +29,7 @@ const Missions = () => {
     console.log('click');
     dispatch(reserveMission(missionId));
     console.log(missionId);
+
   };
 
   if (missionList) {

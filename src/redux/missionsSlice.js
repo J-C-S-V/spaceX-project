@@ -31,6 +31,9 @@ export const missionSlice = createSlice({
         mission.joinedMission = !mission.joinedMission;
       }
     },
+    
+  
+
 
   },
 });
