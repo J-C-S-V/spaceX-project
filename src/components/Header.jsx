@@ -3,12 +3,9 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import log from '../assets/logo.png';
+import '../styles/App.css';
 
 function Header() {
-  const activeStyle = {
-    textDecoration: 'underline',
-  };
-
   return (
     <Navbar bg="light" expand="lg">
       <Container className="d-flex">
@@ -22,16 +19,12 @@ function Header() {
           <Nav.Link href="#home">Rockets</Nav.Link>
           <NavLink
             to="/Missions"
-            activeClassName="active"
-            style={activeStyle}
             className="nav-link"
           >
             Missions
           </NavLink>
           <NavLink
             to="/Profile"
-            activeClassName="active"
-            style={activeStyle}
             className="nav-link"
           >
             My Profile
