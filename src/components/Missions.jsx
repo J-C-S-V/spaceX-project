@@ -29,7 +29,20 @@ const Missions = () => {
     console.log('click');
     dispatch(reserveMission(missionId));
     console.log(missionId);
+    const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
 
+    if (joinedMissions.includes(missionId)) {
+      const updatedMissions = joinedMissions.filter((id) => id !== missionId);
+      localStorage.setItem('joinedMissions', JSON.stringify(updatedMissions));
+    } else {
+      joinedMissions.push(missionId);
+      localStorage.setItem('joinedMissions', JSON.stringify(joinedMissions));
+    }
+  };
+
+  const isMissionJoined = (missionId) => {
+    const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
+    return joinedMissions.includes(missionId);
   };
 
   if (missionList) {
@@ -51,14 +64,13 @@ const Missions = () => {
 
               <Col className=" d-flex align-items-center ">
                 <Button
-                  variant={mission.joinedMission ? 'warning' : 'outline-primary'}
+                  variant={isMissionJoined(mission.mission_id) ? 'warning' : 'outline-primary'}
                   size="sm"
                   onClick={() => handleReservation(mission.mission_id)}
                 >
-                  {mission.joinedMission
-                    ? 'Cancel Reservation'
-                    : 'Make your reservation'}
+                  {isMissionJoined(mission.mission_id) ? 'Cancel Reservation' : 'Make your reservation'}
                 </Button>
+
                 <Button variant="success">
                   reserved
 

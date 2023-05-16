@@ -7,8 +7,9 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 
 const Profile = () => {
+  const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
   const { missionList } = useSelector((store) => store.mission);
-  const joinedMissions = missionList.filter((mission) => mission.joinedMission);
+  const filteredMissions = missionList.filter((mission) => joinedMissions.includes(mission.mission_id));
 
   return (
     <>
@@ -40,7 +41,7 @@ const Profile = () => {
             <h2>Missions</h2>
             <Table striped bordered hover>
               <tbody>
-                {joinedMissions.map((mission, index) => (
+                {filteredMissions.map((mission, index) => (
                   <tr key={mission.mission_id}>
                     <td>{index + 1}</td>
                     <td colSpan={2}>{mission.mission_name}</td>
