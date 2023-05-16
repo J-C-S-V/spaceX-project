@@ -35,16 +35,16 @@ const Missions = () => {
               <Col className="custom-col">
                 {mission.description}
               </Col>
-            </Row>
-            <Row>
-              <Col xs={2}>
+              <Col>
+                <Col>
                 <Button variant="outline-primary" size="sm">Make your reservation</Button>
-              </Col>
-              <Col xs={2}>
+                </Col>
+                <Col>
                 <Button variant="success">
                   reserved
                   <span className="visually-hidden">unread messages</span>
                 </Button>
+                </Col>
               </Col>
             </Row>
           </div>

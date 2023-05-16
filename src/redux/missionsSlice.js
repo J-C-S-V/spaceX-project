@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   missionList: [],
+  joinedMission: false,
 };
 
 export const missionSlice = createSlice({
@@ -20,6 +21,10 @@ export const missionSlice = createSlice({
     setMissions: (state, action) => {
       state.missionList = action.payload;
     },
+    
+    reserveMission: (state) => {
+      state.joinedMission = true
+    }
 
   },
 });

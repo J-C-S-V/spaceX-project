@@ -10,13 +10,8 @@ const Profile = () => (
     <Container className="mt-5">
       <Row>
         <Col xs={6}>
+          <h2>Rockets</h2>
           <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Rockets</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
                 <td>1</td>
@@ -36,13 +31,8 @@ const Profile = () => (
           </Table>
         </Col>
         <Col xs={6}>
+          <h2>Missions</h2>
           <Table striped bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Missions</th>
-              </tr>
-            </thead>
             <tbody>
               <tr>
                 <td>1</td>
