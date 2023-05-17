@@ -7,6 +7,12 @@
   border-radius: 1rem;
 }
 
+.rockets__name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .rockets__img {
   border-radius: 50%;
   height: 250px;
@@ -27,4 +33,23 @@
 
 .rockets__description {
   font-size: larger;
+}
+
+.cancel-button {
+  background-color: red;
+  color: white;
+  border: 1px solid red;
+}
+
+.cancel-button:hover {
+  background-color: #ff3636;
+  color: white;
+  border: 1px solid red;
+}
+
+.rockets__reserved {
+  background-color: #ff3636;
+  color: white;
+  border: 1px solid #ff3636;
+  font-weight: 600;
 }
