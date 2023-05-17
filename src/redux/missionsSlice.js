@@ -25,21 +25,17 @@ export const missionSlice = createSlice({
     reserveMission: (state, action) => {
       const missionId = action.payload;
       const mission = state.missionList.find(
-        (mission) => mission.mission_id === missionId
+        (mission) => mission.mission_id === missionId,
       );
       if (mission) {
         mission.joinedMission = !mission.joinedMission;
       }
     },
-    
-  
-
-
   },
 });
 
 export const {
-  startLoading, setMissions, endLoading, reserveMission
+  startLoading, setMissions, endLoading, reserveMission,
 } = missionSlice.actions;
 
 export default missionSlice.reducer;

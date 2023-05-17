@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
@@ -74,7 +73,11 @@ const Missions = () => {
                   {isMissionJoined(mission.mission_id) ? 'Cancel Mission' : 'join Mission'}
                 </Button>
 
-                <Badge bg="secondary">Secondary</Badge>
+                <Badge
+                  bg={isMissionJoined(mission.mission_id) ? 'success' : 'secondary'}
+                >
+                  {isMissionJoined(mission.mission_id) ? 'joined' : 'not joined'}
+                </Badge>
                 {' '}
 
               </Col>

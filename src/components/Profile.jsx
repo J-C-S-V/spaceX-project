@@ -9,7 +9,7 @@ import Table from 'react-bootstrap/Table';
 const Profile = () => {
   const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
   const { missionList } = useSelector((store) => store.mission);
-  const filteredMissions = missionList.filter((mission) => joinedMissions.includes(mission.mission_id));
+  const filteredMissions = missionList.filter((mis) => joinedMissions.includes(mis.mission_id));
 
   return (
     <>
