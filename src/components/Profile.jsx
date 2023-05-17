@@ -5,6 +5,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
+import Alert from 'react-bootstrap/Alert';
 
 const Profile = () => {
   const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
@@ -48,7 +49,13 @@ const Profile = () => {
                 </tbody>
               </Table>
             ) : (
-              <div>No missions</div>
+              <Alert variant="info">
+                <Alert.Heading>No missions selected</Alert.Heading>
+                <p>
+                  Please select a mission before starting your journey
+                </p>
+                <hr />
+              </Alert>
             )}
           </Col>
         </Row>

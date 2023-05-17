@@ -66,17 +66,17 @@ const Missions = () => {
                   variant={isMissionJoined(mission.mission_id) ? 'warning' : 'outline-primary'}
                   size="sm"
                   onClick={() => handleReservation(mission.mission_id)}
-                  style={{ marginRight: '10px' }}
+                  style={{ marginRight: '10px', padding: '10px' }}
                 >
                   {isMissionJoined(mission.mission_id) ? 'Cancel Mission' : 'join Mission'}
                 </Button>
 
                 <Badge
                   bg={isMissionJoined(mission.mission_id) ? 'success' : 'secondary'}
+                  style={{ fontSize: '13px', padding: '13px' }}
                 >
                   {isMissionJoined(mission.mission_id) ? 'joined' : 'not joined'}
                 </Badge>
-                {' '}
 
               </Col>
 
