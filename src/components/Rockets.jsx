@@ -1,16 +1,20 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import { getRockets } from '../redux/rocketsSlice';
+import { getRockets, reservation } from '../redux/rocketsSlice';
 import '../styles/rockets.css';
 
 function Rockets() {
   const { rocketList } = useSelector((state) => state.rockets);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getRockets());
   }, [dispatch]);
-  // console.log('This is name', rocketList);
+
+  const handleReservation = (rocketId) => {
+    dispatch(reservation(rocketId));
+  };
 
   return (
     <>
@@ -21,8 +25,12 @@ function Rockets() {
             <div className="rockets__container">
               <h2 className="rockets__name">{rocket.rocket_name}</h2>
               <h3 className="rockets__description">{rocket.description}</h3>
-              <Button className="button" variant="primary">
-                Reserve Rocket
+              <Button
+                onClick={() => handleReservation(rocket.id)}
+                className="button"
+                variant="primary"
+              >
+                {rocket.reserved ? 'Cancel Reservation' : 'Reserve Rocket'}
               </Button>
             </div>
           </div>
