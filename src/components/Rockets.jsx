@@ -1,27 +1,36 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
 import { getRockets } from '../redux/rocketsSlice';
+import '../styles/rockets.css';
 
 function Rockets() {
-  const {
-    name,
-    id,
-    type,
-    flickrImages,
-  } = useSelector((state) => state.rockets);
+  const { rocketList } = useSelector((state) => state.rockets);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getRockets());
   }, [dispatch]);
+  // console.log('This is name', rocketList);
 
   return (
-    <div>
-      <h1>Rockets</h1>
-      <h3>{name}</h3>
-      <h2>{id}</h2>
-      <h2>{type}</h2>
-      <img src={flickrImages} alt="test" />
-    </div>
+    <>
+      {rocketList.length > 0 ? (
+        rocketList.map((rocket) => (
+          <div className="rockets" key={rocket.id}>
+            <img className="rockets__img" src={rocket.flickr_images} alt="test" />
+            <div className="rockets__container">
+              <h2 className="rockets__name">{rocket.rocket_name}</h2>
+              <h3 className="rockets__description">{rocket.description}</h3>
+              <Button className="button" variant="primary">
+                Reserve Rocket
+              </Button>
+            </div>
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
+    </>
   );
 }
 
