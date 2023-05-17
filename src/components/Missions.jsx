@@ -50,7 +50,7 @@ const Missions = () => {
           <div key={mission.mission_id}>
             <Row className="mission-list">
 
-              <Col xs={2} className="custom-col d-flex  align-items-center">
+              <Col xs={2} className="custom-col mask d-flex  align-items-center">
                 <h4 className="h4-name">
                   {mission.mission_name}
                 </h4>
