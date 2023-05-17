@@ -23,12 +23,10 @@ const Missions = () => {
 
   useEffect(() => {
     fetchMissions();
-  }, []);
+  });
 
   const handleReservation = (missionId) => {
-    console.log('click');
     dispatch(reserveMission(missionId));
-    console.log(missionId);
     const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
 
     if (joinedMissions.includes(missionId)) {

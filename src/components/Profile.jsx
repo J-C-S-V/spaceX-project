@@ -22,7 +22,6 @@ const Profile = () => {
                 <tr>
                   <td>1</td>
                   <td colSpan={2}>Larry the Bird</td>
-
                 </tr>
                 <tr>
                   <td>2</td>
@@ -33,25 +32,25 @@ const Profile = () => {
                   <td colSpan={2}>Larry the Bird</td>
                 </tr>
               </tbody>
-
             </Table>
-
           </Col>
           <Col xs={6}>
             <h2>Missions</h2>
-            <Table striped bordered hover>
-              <tbody>
-                {filteredMissions.map((mission, index) => (
-                  <tr key={mission.mission_id}>
-                    <td>{index + 1}</td>
-                    <td colSpan={2}>{mission.mission_name}</td>
-                  </tr>
-                ))}
-              </tbody>
-
-            </Table>
+            {filteredMissions.length ? (
+              <Table striped bordered hover>
+                <tbody>
+                  {filteredMissions.map((mission, index) => (
+                    <tr key={mission.mission_id}>
+                      <td>{index + 1}</td>
+                      <td colSpan={2}>{mission.mission_name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <div>No missions</div>
+            )}
           </Col>
-
         </Row>
       </Container>
     </>

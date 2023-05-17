@@ -5,13 +5,11 @@
   background-color: #f0f0f0;
   border-radius: 5px;
   height: auto;
- 
   transition: background-color 0.3s ease;
 }
 
 .custom-container {
   margin-top: 10%;
- 
 }
 
 .mission-list {
@@ -24,15 +22,16 @@
   transform: scale(1.05);
 }
 
-.h4-name{
+.h4-name {
   font-family: 'Roboto Slab', serif;
-  color:darkslategray
+  color: darkslategray;
 }
 
-.p-name{
+.p-name {
   font-family: 'Roboto Slab', serif;
   font-size: 1rem;
 }
-.btn-warning{
+
+.btn-warning {
   margin-right: 1rem;
 }
