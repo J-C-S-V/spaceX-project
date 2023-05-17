@@ -53,9 +53,9 @@ const Missions = () => {
             <Row className="mission-list">
 
               <Col xs={2} className="custom-col d-flex  align-items-center">
-                <p className="p-name">
+                <h4 className="h4-name">
                   {mission.mission_name}
-                </p>
+                </h4>
               </Col>
               <Col xs={8} className="custom-col">
                 <p className="p-name">
