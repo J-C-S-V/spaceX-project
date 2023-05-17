@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
 import {
@@ -51,13 +52,14 @@ const Missions = () => {
         {missionList.map((mission) => (
           <div key={mission.mission_id}>
             <Row className="mission-list">
+
               <Col xs={2} className="custom-col d-flex  align-items-center">
-                <p>
+                <p className="p-name">
                   {mission.mission_name}
                 </p>
               </Col>
               <Col xs={8} className="custom-col">
-                <p>
+                <p className="p-name">
                   {mission.description}
                 </p>
               </Col>
@@ -67,14 +69,13 @@ const Missions = () => {
                   variant={isMissionJoined(mission.mission_id) ? 'warning' : 'outline-primary'}
                   size="sm"
                   onClick={() => handleReservation(mission.mission_id)}
+                  style={{ marginRight: '10px' }}
                 >
-                  {isMissionJoined(mission.mission_id) ? 'Cancel Reservation' : 'Make your reservation'}
+                  {isMissionJoined(mission.mission_id) ? 'Cancel Mission' : 'join Mission'}
                 </Button>
 
-                <Button variant="success">
-                  reserved
-
-                </Button>
+                <Badge bg="secondary">Secondary</Badge>
+                {' '}
 
               </Col>
 
