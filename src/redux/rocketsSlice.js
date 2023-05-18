@@ -47,7 +47,6 @@ export default rocketSlice.reducer;
 export const getRocketsIfNeeded = () => async (dispatch, getState) => {
   const { rocketList } = getState().rockets;
 
-  // Only fetch rockets if they haven't been loaded before
   if (!rocketsFetched && rocketList.length === 0) {
     dispatch(getRockets());
   }

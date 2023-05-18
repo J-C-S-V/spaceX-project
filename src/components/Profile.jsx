@@ -16,7 +16,6 @@ import { getMissionsApi } from '../redux/missionApi';
 const Profile = () => {
   const { rocketList } = useSelector((state) => state.rockets);
   const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
-  console.log(reservedRockets);
   const { missionList, joinedIds } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
 
