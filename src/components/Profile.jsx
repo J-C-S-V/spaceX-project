@@ -14,6 +14,9 @@ import {
 import { getMissionsApi } from '../redux/missionApi';
 
 const Profile = () => {
+  const { rocketList } = useSelector((state) => state.rockets);
+  const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
+  console.log(reservedRockets);
   const { missionList, joinedIds } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
 
@@ -36,22 +39,24 @@ const Profile = () => {
         <Row>
           <Col xs={6}>
             <h2>Rockets</h2>
-            <Table striped bordered hover>
-              <tbody>
-                <tr>
-                  <td>1</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td colSpan={2}>Larry the Bird</td>
-                </tr>
-              </tbody>
-            </Table>
+            {reservedRockets.length ? (
+              <Table striped bordered hover>
+                <tbody>
+                  {reservedRockets.map((rocket, index) => (
+                    <tr key={rocket.id}>
+                      <td>{index + 1}</td>
+                      <td>{rocket.rocket_name}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </Table>
+            ) : (
+              <Alert variant="info">
+                <Alert.Heading>No rockets reserved</Alert.Heading>
+                <p>Please reserve a rocket before starting your journey</p>
+                <hr />
+              </Alert>
+            )}
           </Col>
           <Col xs={6}>
             <h2>Missions</h2>

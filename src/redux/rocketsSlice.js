@@ -3,9 +3,13 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const url = 'https://api.spacexdata.com/v3/';
 const endPoint = 'rockets';
 
+// Add a flag to track if the rockets have been fetched
+let rocketsFetched = false;
+
 export const getRockets = createAsyncThunk('rockets/getRockets', async () => {
   const response = await fetch(`${url}${endPoint}`);
   const rockets = await response.json();
+  rocketsFetched = true; // Update the flag when the rockets are fetched
   return rockets;
 });
 
@@ -40,3 +44,12 @@ const rocketSlice = createSlice({
 export const { reservation } = rocketSlice.actions;
 
 export default rocketSlice.reducer;
+
+export const getRocketsIfNeeded = () => async (dispatch, getState) => {
+  const { rocketList } = getState().rockets;
+
+  // Only fetch rockets if they haven't been loaded before
+  if (!rocketsFetched && rocketList.length === 0) {
+    dispatch(getRockets());
+  }
+};

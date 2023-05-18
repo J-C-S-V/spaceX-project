@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
-import { getRockets, reservation } from '../redux/rocketsSlice';
+import { getRocketsIfNeeded, reservation } from '../redux/rocketsSlice';
 import '../styles/rockets.css';
 
 function Rockets() {
@@ -9,7 +9,7 @@ function Rockets() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getRockets());
+    dispatch(getRocketsIfNeeded());
   }, [dispatch]);
 
   const handleReservation = (rocketId) => {
