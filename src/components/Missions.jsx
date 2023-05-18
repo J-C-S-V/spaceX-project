@@ -5,10 +5,12 @@ import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
+import AOS from 'aos';
 import {
   startLoading, endLoading, setMissions, missionJoinedByUser,
 } from '../redux/missionsSlice';
 import { getMissionsApi } from '../redux/missionApi';
+import 'aos/dist/aos.css';
 
 const Missions = () => {
   const { missionList, joinedIds } = useSelector((store) => store.mission);
@@ -25,6 +27,10 @@ const Missions = () => {
     fetchMissions();
   }, []);
 
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   const handleReservation = (missionId) => {
     dispatch(missionJoinedByUser(missionId));
   };
@@ -35,7 +41,7 @@ const Missions = () => {
     return (
       <div className="custom-container">
         {missionList.map((mission) => (
-          <div key={mission.mission_id}>
+          <div data-aos="fade-up" key={mission.mission_id}>
             <Row className="mission-list">
 
               <Col xs={2} className="custom-col mask d-flex  align-items-center">

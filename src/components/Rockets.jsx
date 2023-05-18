@@ -1,6 +1,8 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 import { getRocketsIfNeeded, reservation } from '../redux/rocketsSlice';
 import '../styles/rockets.css';
 
@@ -12,6 +14,10 @@ function Rockets() {
     dispatch(getRocketsIfNeeded());
   }, [dispatch]);
 
+  useEffect(() => {
+    AOS.init({ duration: 2000 });
+  }, []);
+
   const handleReservation = (rocketId) => {
     dispatch(reservation(rocketId));
   };
@@ -20,7 +26,7 @@ function Rockets() {
     <>
       {rocketList.length > 0 ? (
         rocketList.map((rocket) => (
-          <div className="rockets" key={rocket.id}>
+          <div data-aos="fade-up" className="rockets" key={rocket.id}>
             <img
               className="rockets__img"
               src={rocket.flickr_images}
