@@ -17,14 +17,14 @@ const Profile = () => {
   const { missionList, joinedIds } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const fetchMissions = async () => {
-      dispatch(startLoading());
-      const missions = await getMissionsApi();
-      dispatch(endLoading());
-      dispatch(setMissions(missions));
-    };
+  const fetchMissions = async () => {
+    dispatch(startLoading());
+    const missions = await getMissionsApi();
+    dispatch(endLoading());
+    dispatch(setMissions(missions));
+  };
 
+  useEffect(() => {
     fetchMissions();
   }, [dispatch]);
 
