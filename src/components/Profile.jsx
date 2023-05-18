@@ -1,16 +1,38 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import '../styles/profile.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
+import {
+  startLoading,
+  endLoading,
+  setMissions,
+} from '../redux/missionsSlice';
+import { getMissionsApi } from '../redux/missionApi';
 
 const Profile = () => {
-  const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
-  const { missionList } = useSelector((store) => store.mission);
-  const filteredMissions = missionList.filter((mis) => joinedMissions.includes(mis.mission_id));
+  const { missionList, ArrayOfMissionsJoined } = useSelector((store) => store.mission);
+  const dispatch = useDispatch();
+
+  console.log(ArrayOfMissionsJoined)
+
+  useEffect(() => {
+    const fetchMissions = async () => {
+      dispatch(startLoading());
+      const missions = await getMissionsApi(); // Fetch the missions from the API
+      dispatch(endLoading());
+      dispatch(setMissions(missions)); // Update the missionList with the fetched missions
+    };
+
+    fetchMissions();
+  }, [dispatch]);
+
+  const filteredMissions = missionList.filter((mission) =>
+    ArrayOfMissionsJoined.includes(mission.mission_id)
+  );
 
   return (
     <>
@@ -51,9 +73,7 @@ const Profile = () => {
             ) : (
               <Alert variant="info">
                 <Alert.Heading>No missions selected</Alert.Heading>
-                <p>
-                  Please select a mission before starting your journey
-                </p>
+                <p>Please select a mission before starting your journey</p>
                 <hr />
               </Alert>
             )}
