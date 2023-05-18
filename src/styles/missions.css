@@ -18,10 +18,10 @@
   transition: background-color 0.3s ease;
 }
 
-.mission-list:hover {
+/* .mission-list:hover {
   background-color: transparent;
   transform: scale(1.05);
-}
+} */
 
 .h4-name {
   font-family: 'Roboto Slab', serif;
