@@ -10,9 +10,9 @@ const SpaceRoutes = () => (
     <div className="container">
       <Header />
       <Routes>
-        <Route path="rockets" element={<Rockets />} />
-        <Route path="Profile" element={<Profile />} />
-        <Route path="Missions" element={<Missions />} />
+        <Route path="/" element={<Rockets />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/missions" element={<Missions />} />
       </Routes>
     </div>
   </>

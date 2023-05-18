@@ -3,13 +3,12 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const url = 'https://api.spacexdata.com/v3/';
 const endPoint = 'rockets';
 
-// Add a flag to track if the rockets have been fetched
 let rocketsFetched = false;
 
 export const getRockets = createAsyncThunk('rockets/getRockets', async () => {
   const response = await fetch(`${url}${endPoint}`);
   const rockets = await response.json();
-  rocketsFetched = true; // Update the flag when the rockets are fetched
+  rocketsFetched = true;
   return rockets;
 });
 
