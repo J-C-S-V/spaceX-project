@@ -6,12 +6,12 @@ import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
 import {
-  startLoading, endLoading, setMissions, reserveMission, missionJoinedByUser
+  startLoading, endLoading, setMissions, missionJoinedByUser,
 } from '../redux/missionsSlice';
 import { getMissionsApi } from '../redux/missionApi';
 
 const Missions = () => {
-  const { missionList, joinedMission, ArrayOfMissionsJoined } = useSelector((store) => store.mission);
+  const { missionList, joinedIds } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
 
   const fetchMissions = async () => {
@@ -27,28 +27,9 @@ const Missions = () => {
 
   const handleReservation = (missionId) => {
     dispatch(missionJoinedByUser(missionId));
-    //dispatch(reserveMission(missionId));
-    // const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
-
-    // if (joinedMissions.includes(missionId)) {
-    //   const updatedMissions = joinedMissions.filter((id) => id !== missionId);
-    //   localStorage.setItem('joinedMissions', JSON.stringify(updatedMissions));
-    // } else {
-    //   joinedMissions.push(missionId);
-    //   localStorage.setItem('joinedMissions', JSON.stringify(joinedMissions));
-    // }
   };
 
-  const isMissionJoined = (missionId) => {
-    return ArrayOfMissionsJoined.includes(missionId);
-    // const mission = missionList.find((mission) => mission.mission_id === missionId);
-    // return mission?.joinedMission || false;
-  };
-
-  // const isMissionJoined = (missionId) => {
-  //   const joinedMissions = JSON.parse(localStorage.getItem('joinedMissions')) || [];
-  //   return joinedMissions.includes(missionId);
-  // };
+  const isMissionJoined = (missionId) => joinedIds.includes(missionId);
 
   if (missionList) {
     return (

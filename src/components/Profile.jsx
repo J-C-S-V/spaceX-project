@@ -14,25 +14,21 @@ import {
 import { getMissionsApi } from '../redux/missionApi';
 
 const Profile = () => {
-  const { missionList, ArrayOfMissionsJoined } = useSelector((store) => store.mission);
+  const { missionList, joinedIds } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
-
-  console.log(ArrayOfMissionsJoined)
 
   useEffect(() => {
     const fetchMissions = async () => {
       dispatch(startLoading());
-      const missions = await getMissionsApi(); // Fetch the missions from the API
+      const missions = await getMissionsApi();
       dispatch(endLoading());
-      dispatch(setMissions(missions)); // Update the missionList with the fetched missions
+      dispatch(setMissions(missions));
     };
 
     fetchMissions();
   }, [dispatch]);
 
-  const filteredMissions = missionList.filter((mission) =>
-    ArrayOfMissionsJoined.includes(mission.mission_id)
-  );
+  const filteredMissions = missionList.filter((mission) => joinedIds.includes(mission.mission_id));
 
   return (
     <>
