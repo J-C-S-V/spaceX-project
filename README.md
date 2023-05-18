@@ -79,7 +79,8 @@ This project is a Single Page Application (SPA), which utilizes modern web techn
 
 ## 🚀 Live demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://j-c-s-v.github.io/webpack-to-do-list/)
+Under construction.
+<!-- - [Live Demo Link](https://j-c-s-v.github.io/webpack-to-do-list/) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
