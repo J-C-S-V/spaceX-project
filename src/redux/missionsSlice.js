@@ -3,10 +3,12 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   missionList: [],
+  joinedMission: false,
+  joinedIds: [],
 };
 
 export const missionSlice = createSlice({
-  name: 'books',
+  name: 'missions',
   initialState,
   reducers: {
     startLoading: (state) => {
@@ -21,11 +23,31 @@ export const missionSlice = createSlice({
       state.missionList = action.payload;
     },
 
+    reserveMission: (state, action) => {
+      const missionId = action.payload;
+      const mission = state.missionList.find((mission) => mission.mission_id === missionId);
+      if (mission) {
+        mission.joinedMission = !mission.joinedMission;
+      }
+    },
+
+    missionJoinedByUser: (state, action) => {
+      const missionId = action.payload;
+      const mission = state.missionList.find((mission) => mission.mission_id === missionId);
+      if (mission) {
+        mission.joinedMission = !mission.joinedMission;
+        if (mission.joinedMission) {
+          state.joinedIds.push(mission.mission_id);
+        } else {
+          state.joinedIds = state.joinedIds.filter((id) => id !== mission.mission_id);
+        }
+      }
+    },
   },
 });
 
 export const {
-  startLoading, setMissions, endLoading,
+  startLoading, setMissions, endLoading, reserveMission, missionJoinedByUser,
 } = missionSlice.actions;
 
 export default missionSlice.reducer;

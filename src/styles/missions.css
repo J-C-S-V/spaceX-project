@@ -1,10 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:ital,wght@1,300&family=Roboto+Slab&display=swap');
+
 .custom-col {
-  border: 1px solid #000;
+  border: 0.5px solid #d2d0d0;
   background-color: #f0f0f0;
   border-radius: 5px;
   height: auto;
+  transition: background-color 0.3s ease;
+  position: relative;
 }
 
 .custom-container {
   margin-top: 10%;
+}
+
+.mission-list {
+  margin-bottom: 3rem;
+  transition: background-color 0.3s ease;
+}
+
+.mission-list:hover {
+  background-color: transparent;
+  transform: scale(1.05);
+}
+
+.h4-name {
+  font-family: 'Roboto Slab', serif;
+  color: #062f3c;
+  text-shadow: 0 0 8px #062f3c;
+  -webkit-text-stroke: 1px #218cac;
+}
+
+.p-name {
+  font-family: 'Roboto Slab', serif;
+  font-size: 1rem;
+}
+
+.btn-warning {
+  margin-right: 1rem;
+}
+
+.mask {
+  overflow: hidden;
+  margin-right: 0.3rem;
+  border-radius: 5%;
 }
