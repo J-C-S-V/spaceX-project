@@ -1,4 +1,12 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+const apiURL = 'https://api.spacexdata.com/v3/missions';
+
+export const getDataFecthed = createAsyncThunk('missions/getDataFecthed', async () => {
+  const response = await axios.get(apiURL);
+  return response.data;
+});
 
 const initialState = {
   isLoading: false,
@@ -9,34 +17,28 @@ export const missionSlice = createSlice({
   name: 'missions',
   initialState,
   reducers: {
-    startLoading: (state) => {
-      state.isLoading = true;
-    },
 
-    endLoading: (state) => {
-      state.isLoading = false;
-    },
-
-    setMissions: (state, action) => {
-      state.missionList = action.payload;
-    },
-
-    missionJoinedByUser: (state, action) => {
+    joinMission: (state, action) => {
       const missionId = action.payload;
-      const mission = state.missionList.map((mission) => mission.mission_id === missionId);
-      if (mission) {
-        return {
-          ...initialState,
-          reserved: !mission.reserved,
-        };
-      }
-      return mission;
+      state.missionList = state.missionList.map((mission) =>
+        mission.mission_id === missionId
+          ? { ...mission, reserved: !mission.reserved }
+          : mission
+      );
     },
+  },
+  extraReducers: (builder) => {
+    builder.addCase(getDataFecthed.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.missionList = action.payload;
+    });
   },
 });
 
 export const {
-  startLoading, setMissions, endLoading, reserveMission, missionJoinedByUser,
+ 
+  joinMission,
+
 } = missionSlice.actions;
 
 export default missionSlice.reducer;

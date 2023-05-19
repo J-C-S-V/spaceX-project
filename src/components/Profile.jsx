@@ -10,9 +10,12 @@ import Alert from 'react-bootstrap/Alert';
 const Profile = () => {
   const { rocketList } = useSelector((state) => state.rockets);
   const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
-  const { missionList } = useSelector((store) => store.mission);
-  const filteredMissions = missionList.filter((mission) => mission.reserved);
 
+
+  const missions = useSelector((state) => state.mission.missionList);
+  const filteredMissions = missions.filter((mission) => mission.reserved);
+
+  
   return (
     <>
       <Container className="mt-5">
