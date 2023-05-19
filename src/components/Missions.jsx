@@ -1,86 +1,65 @@
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
-import AOS from 'aos';
-import {
-  startLoading, endLoading, setMissions, missionJoinedByUser,
-} from '../redux/missionsSlice';
-import { getMissionsApi } from '../redux/missionApi';
-import 'aos/dist/aos.css';
+import Table from 'react-bootstrap/Table';
+import { joinMission, getMissionsIfNeeded } from '../redux/missionsSlice';
 
 const Missions = () => {
-  const { missionList, joinedIds } = useSelector((store) => store.mission);
+  const { missionList } = useSelector((store) => store.missions);
   const dispatch = useDispatch();
 
-  const fetchMissions = async () => {
-    dispatch(startLoading());
-    const missions = await getMissionsApi();
-    dispatch(endLoading());
-    dispatch(setMissions(missions));
-  };
-
   useEffect(() => {
-    fetchMissions();
-  }, []);
-
-  useEffect(() => {
-    AOS.init({ duration: 2000 });
-  }, []);
+    dispatch(getMissionsIfNeeded());
+  }, [dispatch]);
 
   const handleReservation = (missionId) => {
-    dispatch(missionJoinedByUser(missionId));
+    dispatch(joinMission(missionId));
   };
-
-  const isMissionJoined = (missionId) => joinedIds.includes(missionId);
 
   if (missionList) {
     return (
-      <div className="custom-container">
-        {missionList.map((mission) => (
-          <div data-aos="fade-up" key={mission.mission_id}>
-            <Row className="mission-list">
+      <div className="table-container">
+        <Table striped bordered hover>
+          <thead>
+            <tr>
+              <th>Mission</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>{' '}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {missionList.map((mission) => (
+              <tr key={mission.mission_id}>
+                <td><strong>{mission.mission_name}</strong></td>
+                <td>{mission.description}</td>
+                <td className="align-middle">
+                  <Badge
+                    bg={mission.reserved ? 'info' : 'secondary'}
+                  >
+                    {mission.reserved ? 'Active member' : 'NOT A MEMBER'}
+                  </Badge>
+                </td>
+                <td className="align-middle">
+                  <Button
+                    className="m-3 join-button"
+                    variant={mission.reserved ? 'outline-danger' : 'outline-secondary'}
+                    size="sm"
+                    onClick={() => handleReservation(mission.mission_id)}
 
-              <Col xs={2} className="custom-col mask d-flex  align-items-center">
-                <h4 className="h4-name">
-                  {mission.mission_name}
-                </h4>
-              </Col>
-              <Col xs={8} className="custom-col">
-                <p className="p-name">
-                  {mission.description}
-                </p>
-              </Col>
-
-              <Col className=" d-flex align-items-center ">
-                <Button
-                  variant={isMissionJoined(mission.mission_id) ? 'warning' : 'outline-primary'}
-                  size="sm"
-                  onClick={() => handleReservation(mission.mission_id)}
-                  style={{ marginRight: '10px', padding: '10px' }}
-                >
-                  {isMissionJoined(mission.mission_id) ? 'Cancel Mission' : 'join Mission'}
-                </Button>
-
-                <Badge
-                  bg={isMissionJoined(mission.mission_id) ? 'success' : 'secondary'}
-                  style={{ fontSize: '13px', padding: '13px' }}
-                >
-                  {isMissionJoined(mission.mission_id) ? 'joined' : 'not joined'}
-                </Badge>
-
-              </Col>
-
-            </Row>
-          </div>
-        ))}
+                  >
+                    {mission.reserved ? 'Leave Mission' : 'Join Mission'}
+                  </Button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
       </div>
     );
   }
-
   return null;
 };
 
