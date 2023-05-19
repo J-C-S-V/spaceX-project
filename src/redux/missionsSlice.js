@@ -1,23 +1,27 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const apiURL = 'https://api.spacexdata.com/v3/missions';
+const url = 'https://api.spacexdata.com/v3/';
+const endPoint = 'missions';
 
-export const getDataFecthed = createAsyncThunk('missions/getDataFecthed', async () => {
-  const response = await axios.get(apiURL);
-  return response.data;
+let missionsFetched = false;
+
+export const getMissions = createAsyncThunk('missions/getMissions', async () => {
+  const response = await axios.get(`${url}${endPoint}`);
+  const missions = await response.data;
+  missionsFetched = true;
+  return missions;
 });
 
 const initialState = {
-  isLoading: false,
   missionList: [],
+  isLoading: false,
 };
 
-export const missionSlice = createSlice({
+const missionSlice = createSlice({
   name: 'missions',
   initialState,
   reducers: {
-
     joinMission: (state, action) => {
       const missionId = action.payload;
       state.missionList = state.missionList.map((mission) => {
@@ -32,16 +36,21 @@ export const missionSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(getDataFecthed.fulfilled, (state, action) => {
+    builder.addCase(getMissions.fulfilled, (state, action) => {
       state.isLoading = false;
       state.missionList = action.payload;
     });
   },
 });
 
-export const {
-  joinMission,
-
-} = missionSlice.actions;
+export const { joinMission } = missionSlice.actions;
 
 export default missionSlice.reducer;
+
+export const getMissionsIfNeeded = () => async (dispatch, getState) => {
+  const { missionList } = getState().missions;
+
+  if (!missionsFetched && missionList.length === 0) {
+    dispatch(getMissions());
+  }
+};

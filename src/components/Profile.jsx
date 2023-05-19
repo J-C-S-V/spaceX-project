@@ -11,7 +11,10 @@ const Profile = () => {
   const { rocketList } = useSelector((state) => state.rockets);
   const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
 
-  const missions = useSelector((state) => state.mission.missionList);
+  // const { missionList } = useSelector((state) => state.mission);
+  // const reservedMissions = missionList.filter((mission) => mission.reserved);
+
+  const missions = useSelector((state) => state.missions.missionList);
   const filteredMissions = missions.filter((mission) => mission.reserved);
 
   return (

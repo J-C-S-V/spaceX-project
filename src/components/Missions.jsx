@@ -5,15 +5,15 @@ import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
 import AOS from 'aos';
 import Table from 'react-bootstrap/Table';
-import { joinMission, getDataFecthed } from '../redux/missionsSlice';
+import { joinMission, getMissionsIfNeeded } from '../redux/missionsSlice';
 import 'aos/dist/aos.css';
 
 const Missions = () => {
-  const { missionList } = useSelector((store) => store.mission);
+  const { missionList } = useSelector((store) => store.missions);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getDataFecthed());
+    dispatch(getMissionsIfNeeded());
   }, [dispatch]);
 
   useEffect(() => {
