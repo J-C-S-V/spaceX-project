@@ -1,36 +1,18 @@
-import React, { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import '../styles/profile.css';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
-import {
-  startLoading,
-  endLoading,
-  setMissions,
-} from '../redux/missionsSlice';
-import { getMissionsApi } from '../redux/missionApi';
+
 
 const Profile = () => {
   const { rocketList } = useSelector((state) => state.rockets);
   const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
-  const { missionList, joinedIds } = useSelector((store) => store.mission);
-  const dispatch = useDispatch();
-
-  const fetchMissions = async () => {
-    dispatch(startLoading());
-    const missions = await getMissionsApi();
-    dispatch(endLoading());
-    dispatch(setMissions(missions));
-  };
-
-  useEffect(() => {
-    fetchMissions();
-  }, [dispatch]);
-
-  const filteredMissions = missionList.filter((mission) => joinedIds.includes(mission.mission_id));
+  const { missionList} = useSelector((store) => store.mission);
+  const filteredMissions = missionList.filter((mission) => mission.reserved);
 
   return (
     <>

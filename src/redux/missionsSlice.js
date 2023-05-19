@@ -3,8 +3,6 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isLoading: false,
   missionList: [],
-  joinedMission: false,
-  joinedIds: [],
 };
 
 export const missionSlice = createSlice({
@@ -23,25 +21,16 @@ export const missionSlice = createSlice({
       state.missionList = action.payload;
     },
 
-    reserveMission: (state, action) => {
-      const missionId = action.payload;
-      const mission = state.missionList.find((mission) => mission.mission_id === missionId);
-      if (mission) {
-        mission.joinedMission = !mission.joinedMission;
-      }
-    },
-
     missionJoinedByUser: (state, action) => {
       const missionId = action.payload;
-      const mission = state.missionList.find((mission) => mission.mission_id === missionId);
+      const mission = state.missionList.map((mission) => mission.mission_id === missionId);
       if (mission) {
-        mission.joinedMission = !mission.joinedMission;
-        if (mission.joinedMission) {
-          state.joinedIds.push(mission.mission_id);
-        } else {
-          state.joinedIds = state.joinedIds.filter((id) => id !== mission.mission_id);
-        }
+        return {
+          ...initialState,
+          reserved: !mission.reserved,
+        };
       }
+      return mission
     },
   },
 });
