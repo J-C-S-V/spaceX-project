@@ -29,17 +29,21 @@ function Rockets() {
           <div data-aos="fade-up" className="rockets" key={rocket.id}>
             <img
               className="rockets__img"
+              width={300}
               src={rocket.flickr_images}
               alt="test"
             />
             <div className="rockets__container">
               <div className="rockets__name-container">
                 <h2 className="rockets__name">{rocket.rocket_name}</h2>
+
+              </div>
+              <h3 className="rockets__description">
                 {rocket.reserved && (
                   <span className="rockets__reserved">Reserved</span>
                 )}
-              </div>
-              <h3 className="rockets__description">{rocket.description}</h3>
+                {rocket.description}
+              </h3>
               <Button
                 onClick={() => handleReservation(rocket.id)}
                 className={rocket.reserved ? 'button cancel-button' : 'button'}

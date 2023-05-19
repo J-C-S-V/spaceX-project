@@ -25,10 +25,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  padding: 0 2rem;
 }
 
 .button {
-  width: 10rem;
+  align-self: flex-start;
+  font-size: 1.2rem;
 }
 
 .rockets__description {
@@ -36,21 +38,26 @@
 }
 
 .cancel-button {
-  background-color: red;
-  color: white;
-  border: 1px solid red;
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
 }
 
 .cancel-button:hover {
-  background-color: #ff3636;
-  color: white;
-  border: 1px solid red;
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
 }
 
 .rockets__reserved {
-  background-color: #ff3636;
+  background-color: #18a2b8;
   color: white;
-  border: 1px solid #ff3636;
-  font-weight: 600;
+  font-weight: 500;
+  font-size: 1rem;
   padding: 0 0.2rem;
+  border-radius: 5px;
+  align-self: flex-start;
+  margin-right: 0.5rem;
 }
