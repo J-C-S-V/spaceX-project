@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
 import '../styles/missions.css';
-import AOS from 'aos';
 import Table from 'react-bootstrap/Table';
 import { joinMission, getMissionsIfNeeded } from '../redux/missionsSlice';
-import 'aos/dist/aos.css';
 
 const Missions = () => {
   const { missionList } = useSelector((store) => store.missions);
@@ -15,10 +13,6 @@ const Missions = () => {
   useEffect(() => {
     dispatch(getMissionsIfNeeded());
   }, [dispatch]);
-
-  useEffect(() => {
-    AOS.init({ duration: 2000 });
-  }, []);
 
   const handleReservation = (missionId) => {
     dispatch(joinMission(missionId));
