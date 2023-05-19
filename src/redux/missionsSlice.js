@@ -30,7 +30,7 @@ export const missionSlice = createSlice({
           reserved: !mission.reserved,
         };
       }
-      return mission
+      return mission;
     },
   },
 });

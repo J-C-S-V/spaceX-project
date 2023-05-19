@@ -7,11 +7,10 @@ import Col from 'react-bootstrap/Col';
 import Table from 'react-bootstrap/Table';
 import Alert from 'react-bootstrap/Alert';
 
-
 const Profile = () => {
   const { rocketList } = useSelector((state) => state.rockets);
   const reservedRockets = rocketList.filter((rocket) => rocket.reserved);
-  const { missionList} = useSelector((store) => store.mission);
+  const { missionList } = useSelector((store) => store.mission);
   const filteredMissions = missionList.filter((mission) => mission.reserved);
 
   return (
