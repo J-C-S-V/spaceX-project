@@ -7,7 +7,7 @@ import Rockets from '../components/Rockets';
 
 const SpaceRoutes = () => (
   <>
-    <div className="container">
+    <div className="container-fluid">
       <Header />
       <Routes>
         <Route path="/" element={<Rockets />} />
