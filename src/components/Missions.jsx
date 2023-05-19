@@ -13,19 +13,18 @@ import { getMissionsApi } from '../redux/missionApi';
 import 'aos/dist/aos.css';
 
 const Missions = () => {
-  const { missionList, joinedIds } = useSelector((store) => store.mission);
+  const { missionList } = useSelector((store) => store.mission);
   const dispatch = useDispatch();
 
-  const fetchMissions = async () => {
-    dispatch(startLoading());
-    const missions = await getMissionsApi();
-    dispatch(endLoading());
-    dispatch(setMissions(missions));
-  };
-
   useEffect(() => {
+    const fetchMissions = async () => {
+      dispatch(startLoading());
+      const missions = await getMissionsApi();
+      dispatch(endLoading());
+      dispatch(setMissions(missions));
+    };
     fetchMissions();
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     AOS.init({ duration: 2000 });
@@ -34,8 +33,6 @@ const Missions = () => {
   const handleReservation = (missionId) => {
     dispatch(missionJoinedByUser(missionId));
   };
-
-  const isMissionJoined = (missionId) => joinedIds.includes(missionId);
 
   if (missionList) {
     return (
@@ -57,19 +54,19 @@ const Missions = () => {
 
               <Col className=" d-flex align-items-center ">
                 <Button
-                  variant={isMissionJoined(mission.mission_id) ? 'warning' : 'outline-primary'}
+                  variant={mission.reserved ? 'warning' : 'outline-primary'}
                   size="sm"
                   onClick={() => handleReservation(mission.mission_id)}
                   style={{ marginRight: '10px', padding: '10px' }}
                 >
-                  {isMissionJoined(mission.mission_id) ? 'Cancel Mission' : 'join Mission'}
+                  { mission.reserved ? 'Cancel Mission' : 'join Mission'}
                 </Button>
 
                 <Badge
-                  bg={isMissionJoined(mission.mission_id) ? 'success' : 'secondary'}
+                  bg={mission.reserved ? 'success' : 'secondary'}
                   style={{ fontSize: '13px', padding: '13px' }}
                 >
-                  {isMissionJoined(mission.mission_id) ? 'joined' : 'not joined'}
+                  { mission.reserved ? 'joined' : 'not joined'}
                 </Badge>
 
               </Col>
