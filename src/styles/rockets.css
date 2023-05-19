@@ -28,7 +28,8 @@
 }
 
 .button {
-  width: 10rem;
+  align-self: flex-start;
+  font-size: 1.2rem;
 }
 
 .rockets__description {
@@ -36,15 +37,18 @@
 }
 
 .cancel-button {
-  background-color: red;
-  color: white;
-  border: 1px solid red;
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
+  
 }
 
 .cancel-button:hover {
-  background-color: #ff3636;
-  color: white;
-  border: 1px solid red;
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
 }
 
 .rockets__reserved {
