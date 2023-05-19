@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Raleway:ital,wght@1,300&family=Roboto+Slab&display=swap');
 
 .custom-col {
-  border: 0.5px solid #D2D0D0;
-  background-color: #F0F0F0;
+  border: 0.5px solid hsl(0, 2%, 82%);
+  background-color: hsl(0, 0%, 94%);
   border-radius: 5px;
   height: auto;
   transition: background-color 0.3s ease;
@@ -20,9 +20,9 @@
 
 .h4-name {
   font-family: 'Roboto Slab', serif;
-  color: #062F3C;
-  text-shadow: 0 0 8px #062F3C;
-  -webkit-text-stroke: 1px #218CAC;
+  color: hsl(194, 82%, 13%);
+  text-shadow: 0 0 8px hsl(194, 82%, 13%);
+  -webkit-text-stroke: 1px hsl(194, 68%, 40%);
 }
 
 .p-name {
