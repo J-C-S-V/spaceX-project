@@ -29,6 +29,7 @@ function Rockets() {
           <div data-aos="fade-up" className="rockets" key={rocket.id}>
             <img
               className="rockets__img"
+              width={300}
               src={rocket.flickr_images}
               alt="test"
             />
