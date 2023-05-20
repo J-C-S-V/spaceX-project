@@ -1,0 +1,63 @@
+.rockets {
+  display: flex;
+  gap: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: #eee;
+  border-radius: 1rem;
+}
+
+.rockets__name-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.rockets__img {
+  border-radius: 50%;
+  height: 250px;
+  min-width: 250px;
+  outline-offset: 0.5rem;
+  background-color: #161616;
+}
+
+.rockets__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 0 2rem;
+}
+
+.button {
+  align-self: flex-start;
+  font-size: 1.2rem;
+}
+
+.rockets__description {
+  font-size: larger;
+}
+
+.cancel-button {
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
+}
+
+.cancel-button:hover {
+  background-color: white;
+  color: #747c83;
+  border: 1px solid #747c83;
+  font-weight: 500;
+}
+
+.rockets__reserved {
+  background-color: #18a2b8;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+  padding: 0 0.2rem;
+  border-radius: 5px;
+  align-self: flex-start;
+  margin-right: 0.5rem;
+}
